@@ -170,7 +170,7 @@ public class Waifu {
         return desavantage;
     }
     
-    public v-oid setDesavantage(String desavantage) {
+    public void setDesavantage(String desavantage) {
         this.desavantage = desavantage;
     }
 

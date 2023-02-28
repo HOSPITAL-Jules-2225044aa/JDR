@@ -120,7 +120,6 @@ public class Main {
             break;
         }
     }
-    
     public void placerArtefactAleatoire(Artefact artefact) {
         Random rand = new Random();
         int x = rand.nextInt(10);
@@ -131,7 +130,6 @@ public class Main {
             x = rand.nextInt(10);
             y = rand.nextInt(10);
         }
-        Object[][] cases;
-        cases[x][y].setArtefact(artefact);
+        getCase(x,y).setArtefact(artefact);
     }
 }
