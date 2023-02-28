@@ -1,10 +1,10 @@
 public class Coffre {
     private Arme arme;
-    private Artefact artefact;
+    private Potion potion;
 
-    public Coffre(Arme arme, Artefact artefact) {
+    public Coffre(Arme arme, Potion potionDeSoin) {
         this.arme = arme;
-        this.artefact = artefact;
+        this.potion = potionDeSoin;
     }
 
     public Arme getArme() {
@@ -15,11 +15,11 @@ public class Coffre {
         this.arme = arme;
     }
 
-    public Artefact getArtefact() {
-        return artefact;
+    public Potion getArtefact() {
+        return potion;
     }
 
-    public void setArtefact(Artefact artefact) {
-        this.artefact = artefact;
+    public void setPotion(Potion potion) {
+        this.potion = potion;
     }
 }

@@ -2,10 +2,17 @@ import java.util.Random;
 import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
-        
+
         Donjon donjon = new Donjon(5, 5); // création d'un donjon de 5x5 cases
         
-        Waifu subaru = new Waifu("subaru", 10, 8, 20, 100, "hololive", "canard",  "humain");
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Entrez le nom d'un personnage");
+        String nom = sc.nextLine();
+
+        System.out.print("Entrez la classe de votre personnage entre : hololive ou même ou OC");
+        String classe = sc.nextLine();
+
+        Waifu joueur = new Waifu(nom, 10, 8, 20, 100, classe, "canard",  "humain");
         Simp padoru = new Simp("padoru", 6, 4, 2, 50, "même", "rien", "hololive");
         
         Arme batte = new Arme("Batte de subaru", 10);
@@ -14,8 +21,8 @@ public class Main {
         Artefact ShubaDePoche = new Artefact("Augmente la force de son porteur", 10);
         
         
-        Coffre coffreboss = new Coffre(batte,potionDeSoin);
-        donjon.setCase(3, 3, new Case(Case.Coffre, coffreBoss));
+        Coffre coffreboss = new Coffre(batte,grandePotionDeSoin);
+        donjon.setCase(3, 3, new Case(Case.Coffre));
         
         // remplissage de la carte avec des valeurs représentant les éléments du jeu
         donjon.setCase(0, 0, 1); 
@@ -71,8 +78,7 @@ public class Main {
         */
     }
     
-    public void seDeplacer(Donjon donjon) {
-        Scanner sc = new Scanner(System.in);
+    public void seDeplacer(Donjon donjon, Scanner sc) {
         System.out.print("Entrez la direction de déplacement (haut, bas, gauche, droite) : ");
         String direction = sc.nextLine();
         
@@ -119,11 +125,13 @@ public class Main {
         Random rand = new Random();
         int x = rand.nextInt(10);
         int y = rand.nextInt(10);
+        Object[][] carte;
         //détecter si la case est vide ou non
         while (carte[x][y] != Case.vide) {
             x = rand.nextInt(10);
             y = rand.nextInt(10);
         }
+        Object[][] cases;
         cases[x][y].setArtefact(artefact);
     }
 }

@@ -1,4 +1,6 @@
 public class Case {
+    public static final boolean Coffre = false;
+    public static Object vide;
     private boolean passable;
     private boolean ennemiBattu; // ajout de l'attribut ennemiBattu
     

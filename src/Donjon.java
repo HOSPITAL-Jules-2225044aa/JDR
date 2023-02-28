@@ -2,7 +2,7 @@ public class Donjon {
     private int Largeur; // taille en largeur de la carte
     private int Hauteur; // taille en hauteur de la carte
     private int[][] carte; // tableau à 2 dimensions représentant la carte
-    private boolean bossBattu; // ajout de l'attribut bossBattu
+    private boolean bossBattu; // ajout de l'attribut boss a Battre
     
     public Donjon(int Largeur, int Hauteur) {
         this.Largeur = Largeur;
@@ -49,6 +49,9 @@ public class Donjon {
     
     public void setBossBattu(boolean bossBattu) {
         this.bossBattu = bossBattu;
+    }
+
+    public void setCase(int x, int y, Case case1) {
     }
     
     /*
