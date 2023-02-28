@@ -170,12 +170,14 @@ public class Waifu {
         return desavantage;
     }
     
-    public void setDesavantage(String desavantage) {
+    public v-oid setDesavantage(String desavantage) {
         this.desavantage = desavantage;
     }
 
     public Object getInventaire() {
-        return null ;
+        List<Object> Inventaire = new ArrayList<>(
+            
+        );
     }
 
     public void attaquer(Simp ennemi) {

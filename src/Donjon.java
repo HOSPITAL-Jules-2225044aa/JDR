@@ -14,11 +14,19 @@ public class Donjon {
     public int getLargeur() {
         return Largeur;
     }
+
+    public void setLargeur(int valeur) {
+        Largeur = valeur;
+    }
     
     public int getHauteur() {
         return Hauteur;
     }
     
+    public void setHauteur(int valeur) {
+        Hauteur = valeur;
+    }
+
     public int[][] getCarte() {
         return carte;
     }

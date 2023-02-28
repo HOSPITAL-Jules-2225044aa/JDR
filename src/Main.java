@@ -9,7 +9,7 @@ public class Main {
         System.out.print("Entrez le nom d'un personnage");
         String nom = sc.nextLine();
 
-        System.out.print("Entrez la classe de votre personnage entre : hololive ou même ou OC");
+        System.out.print("Entrez la classe de votre personnage entre : hololive/même/OC(Original Character)");
         String classe = sc.nextLine();
 
         Waifu joueur = new Waifu(nom, 10, 8, 20, 100, classe, "canard",  "humain");
@@ -85,7 +85,7 @@ public class Main {
         switch (direction) {
             case "haut":
             if (donjon.getLargeur()> 0 && donjon.getCase(donjon.getLargeur() - 1, donjon.getHauteur()) != 0) {
-                donjon.getLargeur()--;
+                donjon.setLargeur(donjon.getLargeur()-1);
                 System.out.println("Déplacement effectué vers le haut");
             } else {
                 System.out.println("Déplacement impossible");
@@ -93,7 +93,7 @@ public class Main {
             break;
             case "bas":
             if (donjon.getLargeur() < donjon.getLargeur() - 1 && donjon.getCase(donjon.getLargeur() + 1, donjon.getHauteur()) != 0) {
-                donjon.getLargeur()++;
+                donjon.setLargeur(donjon.getLargeur()+1);
                 System.out.println("Déplacement effectué vers le bas");
             } else {
                 System.out.println("Déplacement impossible");
@@ -101,7 +101,7 @@ public class Main {
             break;
             case "gauche":
             if (donjon.getLargeur() > 0 && donjon.getCase(donjon.getLargeur(), donjon.getHauteur() - 1) != 0) {
-                donjon.getHauteur()--;
+                donjon.setHauteur(donjon.getHauteur()-1);
                 System.out.println("Déplacement effectué vers la gauche");
             } else {
                 System.out.println("Déplacement impossible");
@@ -109,7 +109,7 @@ public class Main {
             break;
             case "droite":
             if (donjon.getHauteur() < donjon.getLargeur() - 1 && donjon.getCase(donjon.getLargeur(), donjon.getHauteur() + 1) != 0) {
-                donjon.getHauteur()++;
+                donjon.setHauteur(donjon.getLargeur()+1);
                 System.out.println("Déplacement effectué vers la droite");
             } else {
                 System.out.println("Déplacement impossible");
