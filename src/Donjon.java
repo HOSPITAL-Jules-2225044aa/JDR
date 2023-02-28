@@ -1,6 +1,3 @@
-
-
-
 public class Donjon {
     private int Largeur; // taille en largeur de la carte
     private int Hauteur; // taille en hauteur de la carte

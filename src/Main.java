@@ -78,66 +78,54 @@ public class Main {
         donjon.setCase(4, 2, 2);
         */
     }
-    
-    public void seDeplacer(String direction, Donjon donjon) {
-        int x;
-        int nouveauX = x;
-        int y;
-        int nouveauY = y;
+    /*
+    public static void seDeplacer(Donjon donjon, Scanner sc) {
+        System.out.print("Entrez la direction de déplacement (haut, bas, gauche, droite) : ");
+        String direction = sc.nextLine();
         
-        // Modifier les coordonnées en fonction de la direction choisie
         switch (direction) {
             case "haut":
-                nouveauY--;
-                break;
-            case "bas":
-                nouveauY++;
-                break;
-            case "gauche":
-                nouveauX--;
-                break;
-            case "droite":
-                nouveauX++;
-                break;
-            default:
-                System.out.println("Direction non valide");
-                return;
-        }
-        
-        // Vérifier que les nouvelles coordonnées sont valides
-        if (nouveauX < 0 || nouveauX >= donjon.getLargeur() || nouveauY < 0 || nouveauY >= donjon.getHauteur()) {
-            System.out.println("Déplacement impossible, vous êtes en dehors de la carte");
-            return;
-        }
-        
-        // Vérifier que la case est accessible
-        Case nouvelleCase = donjon.getCase(nouveauX, nouveauY);
-        if (!nouvelleCase.estAccessible()) {
-            System.out.println("Déplacement impossible, la case est occupée");
-            return;
-        }
-        
-        // Déplacer le personnage
-        donjon.setCase(x, y, new Case(true)); // libérer l'ancienne case
-        x = nouveauX;
-        y = nouveauY;
-        donjon.setCase(x, y, new Case(false)); // occuper la nouvelle case
-        
-        // Afficher la carte mise à jour
-        donjon.afficherCarte();
-        
-        // Vérifier si le joueur a atteint le boss
-        if (nouvelleCase.getSymbole() == 'B') {
-            if (donjon.isBossBattu()) {
-                System.out.println("Vous avez déjà vaincu le boss !");
+            if (donjon.getLargeur()> 0 && donjon.getCase(donjon.getLargeur() - 1, donjon.getHauteur()) != 0) {
+                donjon.getLargeur()--;
+                donjon.setLargeur(donjon.getLargeur()-1);
+                System.out.println("Déplacement effectué vers le haut");
             } else {
-                System.out.println("Vous avez atteint le boss ! Préparez-vous à combattre !");
-                donjon.setBossBattu(true);
+                System.out.println("Déplacement impossible");
             }
+            break;
+            case "bas":
+            if (donjon.getLargeur() < donjon.getLargeur() - 1 && donjon.getCase(donjon.getLargeur() + 1, donjon.getHauteur()) != 0) {
+                donjon.getLargeur()++;
+                donjon.setLargeur(donjon.getLargeur()+1);
+                System.out.println("Déplacement effectué vers le bas");
+            } else {
+                System.out.println("Déplacement impossible");
+            }
+            break;
+            case "gauche":
+            if (donjon.getLargeur() > 0 && donjon.getCase(donjon.getLargeur(), donjon.getHauteur() - 1) != 0) {
+                donjon.getHauteur()--;
+                donjon.setHauteur(donjon.getHauteur()-1);
+                System.out.println("Déplacement effectué vers la gauche");
+            } else {
+                System.out.println("Déplacement impossible");
+            }
+            break;
+            case "droite":
+            if (donjon.getHauteur() < donjon.getLargeur() - 1 && donjon.getCase(donjon.getLargeur(), donjon.getHauteur() + 1) != 0) {
+                donjon.getHauteur()++;
+                donjon.setHauteur(donjon.getLargeur()+1);
+                System.out.println("Déplacement effectué vers la droite");
+            } else {
+                System.out.println("Déplacement impossible");
+            }
+            break;
+            default:
+            System.out.println("Direction invalide");
+            break;
         }
-    }
-    
-    }
+    }    
+
     public void placerArtefactAleatoire(Artefact artefact) {
         Random rand = new Random();
         int x = rand.nextInt(10);
@@ -150,4 +138,5 @@ public class Main {
         }
         getCase(x,y).setArtefact(artefact);
     }
+    */
 }
