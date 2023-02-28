@@ -25,4 +25,24 @@ public class Case {
     public void setEnnemiBattu(boolean ennemiBattu) {
         this.ennemiBattu = ennemiBattu;
     }
+    
+    public boolean estVide() {
+        return (this == vide);
+    }
+    
+    public String getSymbole() {
+        if (this == vide) {
+            return ".";
+        } else if (passable && !ennemiBattu) {
+            return " ";
+        } else if (passable && ennemiBattu) {
+            return "X";
+        } else {
+            return "#";
+        }
+    }
+
+    public boolean estAccessible() {
+        return false;
+    }
 }

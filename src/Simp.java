@@ -18,7 +18,7 @@ public class Simp {
         this.avantage = avantage;
         this.desavantage = desavantage;
     }
-
+    
     public String getNom() {
         return nom;
     }
@@ -82,11 +82,14 @@ public class Simp {
     public void setDesavantage(String desavantage) {
         this.desavantage = desavantage;
     }
-
+    
     public void attaquer(Waifu joueur) {
     }
-
+    
     public Object getArmeEquipee() {
         return null;
     }
+
+    public void recevoirDegats(int degats) {
+    }    
 }

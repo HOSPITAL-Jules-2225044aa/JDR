@@ -15,10 +15,11 @@ public class Main {
         Waifu joueur = new Waifu(nom, 10, 8, 20, 100, classe, "canard",  "humain");
         Simp padoru = new Simp("padoru", 6, 4, 2, 50, "même", "rien", "hololive");
         
-        Arme batte = new Arme("Batte de subaru", 10);
+        Arme batte = new Arme("Batte de subaru", 10,10);
         Potion potionDeSoin = new Potion("Potion de soin", 50);
         Potion grandePotionDeSoin = new Potion("Grande potion de soin", 100);
         Artefact ShubaDePoche = new Artefact("Augmente la force de son porteur", 10);
+        
         
         
         Coffre coffreboss = new Coffre(batte,grandePotionDeSoin);
@@ -57,7 +58,7 @@ public class Main {
         
         donjon.afficherCarte();   
         
-        //seDeplacer(direction);
+        seDeplacer(donjon, sc);
         
         
         /*
@@ -78,47 +79,64 @@ public class Main {
         */
     }
     
-    public void seDeplacer(Donjon donjon, Scanner sc) {
-        System.out.print("Entrez la direction de déplacement (haut, bas, gauche, droite) : ");
-        String direction = sc.nextLine();
+    public void seDeplacer(String direction, Donjon donjon) {
+        int x;
+        int nouveauX = x;
+        int y;
+        int nouveauY = y;
         
+        // Modifier les coordonnées en fonction de la direction choisie
         switch (direction) {
             case "haut":
-            if (donjon.getLargeur()> 0 && donjon.getCase(donjon.getLargeur() - 1, donjon.getHauteur()) != 0) {
-                donjon.setLargeur(donjon.getLargeur()-1);
-                System.out.println("Déplacement effectué vers le haut");
-            } else {
-                System.out.println("Déplacement impossible");
-            }
-            break;
+                nouveauY--;
+                break;
             case "bas":
-            if (donjon.getLargeur() < donjon.getLargeur() - 1 && donjon.getCase(donjon.getLargeur() + 1, donjon.getHauteur()) != 0) {
-                donjon.setLargeur(donjon.getLargeur()+1);
-                System.out.println("Déplacement effectué vers le bas");
-            } else {
-                System.out.println("Déplacement impossible");
-            }
-            break;
+                nouveauY++;
+                break;
             case "gauche":
-            if (donjon.getLargeur() > 0 && donjon.getCase(donjon.getLargeur(), donjon.getHauteur() - 1) != 0) {
-                donjon.setHauteur(donjon.getHauteur()-1);
-                System.out.println("Déplacement effectué vers la gauche");
-            } else {
-                System.out.println("Déplacement impossible");
-            }
-            break;
+                nouveauX--;
+                break;
             case "droite":
-            if (donjon.getHauteur() < donjon.getLargeur() - 1 && donjon.getCase(donjon.getLargeur(), donjon.getHauteur() + 1) != 0) {
-                donjon.setHauteur(donjon.getLargeur()+1);
-                System.out.println("Déplacement effectué vers la droite");
-            } else {
-                System.out.println("Déplacement impossible");
-            }
-            break;
+                nouveauX++;
+                break;
             default:
-            System.out.println("Direction invalide");
-            break;
+                System.out.println("Direction non valide");
+                return;
         }
+        
+        // Vérifier que les nouvelles coordonnées sont valides
+        if (nouveauX < 0 || nouveauX >= donjon.getLargeur() || nouveauY < 0 || nouveauY >= donjon.getHauteur()) {
+            System.out.println("Déplacement impossible, vous êtes en dehors de la carte");
+            return;
+        }
+        
+        // Vérifier que la case est accessible
+        Case nouvelleCase = donjon.getCase(nouveauX, nouveauY);
+        if (!nouvelleCase.estAccessible()) {
+            System.out.println("Déplacement impossible, la case est occupée");
+            return;
+        }
+        
+        // Déplacer le personnage
+        donjon.setCase(x, y, new Case(true)); // libérer l'ancienne case
+        x = nouveauX;
+        y = nouveauY;
+        donjon.setCase(x, y, new Case(false)); // occuper la nouvelle case
+        
+        // Afficher la carte mise à jour
+        donjon.afficherCarte();
+        
+        // Vérifier si le joueur a atteint le boss
+        if (nouvelleCase.getSymbole() == 'B') {
+            if (donjon.isBossBattu()) {
+                System.out.println("Vous avez déjà vaincu le boss !");
+            } else {
+                System.out.println("Vous avez atteint le boss ! Préparez-vous à combattre !");
+                donjon.setBossBattu(true);
+            }
+        }
+    }
+    
     }
     public void placerArtefactAleatoire(Artefact artefact) {
         Random rand = new Random();

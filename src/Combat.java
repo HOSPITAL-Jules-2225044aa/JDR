@@ -34,7 +34,7 @@ public class Combat {
         System.out.println("C'est à votre tour !");
         System.out.println("Que souhaitez-vous faire ?");
         System.out.println("1. Attaquer");
-        if (joueur.getInventaire().getNbPotions() > 0) {
+        if (((Waifu) joueur.getInventaire()).getNbPotions() > 0) {
             System.out.println("2. Prendre une potion");
         }
         int choix = scanner.nextInt();
@@ -54,13 +54,13 @@ public class Combat {
     private void tourEnnemi() {
         if (ennemi.getPointDeVie() > 0) {
             ennemi.attaquer(joueur);
-            System.out.println("L'ennemi " + ennemi.getType() + " vous a infligé " + ennemi.getArmeEquipee().getDegats() + " points de dégâts !");
+            System.out.println("L'ennemi " + ennemi.getType() + " vous a infligé " + ((Arme) ennemi.getArmeEquipee()).getDegats() + " points de dégâts !");
         }
     }
     
     private Potion choisirPotion() {
         System.out.println("Quelle potion souhaitez-vous utiliser ?");
-        Inventaire inventaire = joueur.getInventaire();
+        Inventaire inventaire = (Inventaire) joueur.getInventaire();
         int nbPotions = inventaire.getNbPotions();
         for (int i = 0; i < nbPotions; i++) {
             Potion potion = inventaire.getPotion(i);

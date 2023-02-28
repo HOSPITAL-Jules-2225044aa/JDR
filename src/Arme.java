@@ -1,10 +1,12 @@
 public class Arme {
     private String nom;
     private int attaque;
+    private int degats;
     
-    public Arme(String nom, int attaque) {
+    public Arme(String nom, int attaque, int degats) {
         this.nom = nom;
         this.attaque = attaque;
+        this.degats = degats;
     }
     
     public String getNom() {
@@ -35,5 +37,10 @@ public class Arme {
     }
 
     public void add(Arme arme) {
+    }
+    
+    
+    public int getDegats() {
+        return degats;
     }
 }

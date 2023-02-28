@@ -1,20 +1,23 @@
+
+
+
 public class Donjon {
     private int Largeur; // taille en largeur de la carte
     private int Hauteur; // taille en hauteur de la carte
-    private int[][] carte; // tableau à 2 dimensions représentant la carte
+    private Case[][] carte; // tableau à 2 dimensions représentant la carte
     private boolean bossBattu; // ajout de l'attribut boss a Battre
-    
     public Donjon(int Largeur, int Hauteur) {
         this.Largeur = Largeur;
         this.Hauteur = Hauteur;
-        this.carte = new int[Largeur][Hauteur];
+        this.carte = new Case[Largeur][Hauteur];
+        initialiserCarte();
         this.bossBattu = false; // initialisation à false
     }
     
     public int getLargeur() {
         return Largeur;
     }
-
+    
     public void setLargeur(int valeur) {
         Largeur = valeur;
     }
@@ -26,26 +29,26 @@ public class Donjon {
     public void setHauteur(int valeur) {
         Hauteur = valeur;
     }
-
-    public int[][] getCarte() {
+    
+    public Case[][] getCarte() {
         return carte;
     }
     
     //permet de modifier la valeur d'une case spécifique de la carte
     
-    public void setCase(int x, int y, int valeur) {
-        carte[x][y] = valeur;
+    public void setCase(int x, int y, Case case1) {
+        carte[x][y] = case1;
     }
     
     // permet d'obtenir la valeur d'une case spécifique.
-    public int getCase(int x, int y) {
+    public Case getCase(int x, int y) {
         return carte[x][y];
     }
     
     public void afficherCarte() {
         for (int i = 0; i < Hauteur; i++) {
             for (int j = 0; j < Largeur; j++) {
-                System.out.print(carte[j][i] + " ");
+                System.out.print(carte[j][i].estVide() ? " " : carte[j][i].getSymbole() + " ");
             }
             System.out.println();
         }
@@ -58,16 +61,16 @@ public class Donjon {
     public void setBossBattu(boolean bossBattu) {
         this.bossBattu = bossBattu;
     }
+    
+    //initialisation de la carte avec des cases vides
+    public void initialiserCarte() {
+        for (int x = 0; x < Largeur; x++) {
+            for (int y = 0; y < Hauteur; y++) {
+                carte[x][y] = new Case(true);
+            }
+        }
+    }
 
-    public void setCase(int x, int y, Case case1) {
+    public void setCase(int x, int y, int i) {
     }
-    
-    /*
-    initialisation de la carte avec des cases vides
-    for (int x = 0; x < largeur; x++) {
-        for (int y = 0; y < hauteur; y++) {
-            carte[x][y] = new Case(false);
-        }*/
-    }
-    
-    
+}

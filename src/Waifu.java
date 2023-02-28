@@ -12,13 +12,11 @@ public class Waifu {
     private String type;
     private String avantage;
     private String desavantage;
-    private List<Arme> armes;
-    private List<Artefact> artefacts;
-    private List<Potion> potions;
     private int limiteArmes;
     private int limiteArtefacts;
     private int limitePotions;
-    
+    private Inventaire inventaire;
+
     public Waifu(String nom, int attaque, int defense, int pointDeVie, int velocite, String type, String avantage, String desavantage) {
         this.nom = nom;
         this.niveau = 1;
@@ -30,9 +28,6 @@ public class Waifu {
         this.type = type;
         this.avantage = avantage;
         this.desavantage = desavantage;
-        this.armes = new ArrayList<Arme>();
-        this.artefacts = new ArrayList<Artefact>();
-        this.potions = new ArrayList<Potion>();
         this.limiteArmes = 2;
         this.limiteArtefacts = 3;
         this.limitePotions = 5;
@@ -69,7 +64,7 @@ public class Waifu {
             System.out.println("Félicitations, " + this.nom + " a gagné un niveau !");
         }
     }
-
+    
     public void ajouterArme(Arme arme) {
         if (arme.size() < limiteArmes) {
             arme.add(arme);
@@ -174,20 +169,47 @@ public class Waifu {
         this.desavantage = desavantage;
     }
 
-    public Object getInventaire() {
-        List<Object> Inventaire = new ArrayList<>(
-            
-        );
+    public int getNbPotions() {
+        return inventaire.getNbPotions();
+    }
+
+    public List<Object> getInventaire() {
+        List<Object> inventaire = new ArrayList<>();
+        return inventaire;
     }
 
     public void attaquer(Simp ennemi) {
+        Arme arme = this.getArmeEquipee();
+        int degats = arme.getDegats();
+        ennemi.recevoirDegats(degats);
+        }
+        
+        public Arme getArmeEquipee() {
+        return this.inventaire.getArmeEquipee();
+        }
 
+    /*
+    public void attaquer(Simp ennemi) {
+        Arme arme = getArmeEquipee();
+        if (arme == null) {
+            System.out.println("Vous n'avez pas d'arme équipée.");
+            return;
+        }
+        int degats = arme.getDegats();
+        ennemi.recevoirDegats(degats);
+        System.out.println("Vous avez infligé " + degats + " dégâts à l'ennemi.");
     }
-
-    public Object getArmeEquipee() {
+    
+    public Arme getArmeEquipee() {
+        for (Arme arme : inventaire.getNbArmes()) {
+            if (arme.estEquipee()) {
+                return arme;
+            }
+        }
         return null;
     }
-
+    */
+    
     public void utiliserPotion(Potion potion) {
     }
 }
